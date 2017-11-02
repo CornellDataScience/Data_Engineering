@@ -13,4 +13,8 @@ object Main extends App {
                         .option("dbtable","train").load()
 
   println(dataframe_mysql.columns.mkString("Cols: [",", ","]"))
+
+  dataframe_mysql.select("id", "target").show()
+
+  
 }
