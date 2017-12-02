@@ -1,6 +1,7 @@
 from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
+import json
 
 access_token = "936766436772663297-lDZ1AyP3z6NiZ1L0qQLQdo5PQXW6VZR"
 access_token_secret = "NY1x4ZIdTjBDgfMAIgknz1urSPE3AZK2tDPEwyXIl3ovS"
@@ -12,8 +13,11 @@ topic = ""
 class StdOutListener(StreamListener):
 
     def on_data(self, data):
-        #producer.send_messages(topic, data.encode('utf-8'))
-        print data
+        parsed_data = json.loads(data)
+        formated_data = parsed_data["user"]["screen_name"]
+        print(formated_data)
+        #print(data)
+        #producer.send_messages(topic, formated_data.encode('utf-8'))
         return True
 
     def on_error(self, status):
@@ -27,4 +31,5 @@ if __name__ == '__main__':
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l)
-    stream.filter(track=['pokemon', 'kafka', 'zelda'])
+    stream.filter(track=['pokemon', 'kafka', 'zelda', 'christmas', 'politics', 
+    'memes', 'mathematics', 'elon musk'])
