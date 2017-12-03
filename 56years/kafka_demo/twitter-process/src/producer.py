@@ -7,6 +7,7 @@ import avro.datafile
 import avro.io
 import avro.ipc
 import avro.schema
+from time import sleep
 
 access_token = "936766436772663297-lDZ1AyP3z6NiZ1L0qQLQdo5PQXW6VZR"
 access_token_secret = "NY1x4ZIdTjBDgfMAIgknz1urSPE3AZK2tDPEwyXIl3ovS"
@@ -22,7 +23,7 @@ SCHEMA = avro.schema.parse(
         "name":"Twit",
         "fields": [
             {"name": "created_at", "type": "string"},
-            {"name": "id", "type": "int"},
+            {"name": "id", "type": "long"},
             {"name": "text", "type": "string"},
             {"name": "location", "type": "string"},
             {"name": "name", "type": "string"}
@@ -34,23 +35,58 @@ SCHEMA = avro.schema.parse(
 
 class StdOutListener(StreamListener):
 
-    def format_data(self, created_at, id, text, location, name):
-        print"Created at: " + created_at
-        print"id: " + id
-        print"text: " + text
-        print"location: " + location
-        print"name: " + name
-        return "Fin"
 
     def on_data(self, data):
         parsed_data = json.loads(data)
-        formated_data = format_data(
-            parsedData["created_at"], parsedData["id"], 
-            parsedData["text"], parsedData["user"]["location"],
-            parsedData["user"]["screen_name"]
-            )
-        print(formatedData)
-        #producer.send_messages(topic, formatedData.encode('utf-8'))
+        if(parsed_data["created_at"]!=None):
+            created = parsed_data["created_at"]
+            print created
+        else:
+            created = "Not Available"
+
+        if(parsed_data["id"]!=None):
+            id_num = parsed_data["id"]
+            print id_num
+        else:
+            id_num = 0
+
+        if(parsed_data["text"]!=None):
+            text = parsed_data["text"]
+            print text
+        else:
+            text = "No Text"
+
+        if(parsed_data["user"]["location"]!=None):
+            location = parsed_data["user"]["location"]
+            print location
+        else:
+            location = "Not Available"
+
+        if(parsed_data["user"]["screen_name"]!= None):
+            screen_name = parsed_data["user"]["screen_name"]
+            print screen_name
+        else:
+            screen_name = "Not Available"
+
+        message = {
+            "created_at": created,
+            "id": id_num,
+            "text": text,
+            "location": location,
+            "name": screen_name
+        }
+
+        buf = io.BytesIO()
+        writer = avro.datafile.DataFileWriter(buf, avro.io.DatumWriter(), SCHEMA)
+        writer.append(message)
+        writer.flush()
+        buf.seek(0)
+        output_data = buf.read()
+
+        producer.send_messages(topic, output_data.encode('utf-8'))
+        print(output_data)
+        print("Sent!!!")
+        sleep(1)
         return True
 
     def onError(self, status):
@@ -58,8 +94,8 @@ class StdOutListener(StreamListener):
 
 
 if __name__ == '__main__':
-    #kafka = KafkaClient("localhost:9092")
-    #producer = SimpleProducer(kafka)
+    kafka = KafkaClient("localhost:9092")
+    producer = SimpleProducer(kafka)
     l = StdOutListener()
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
