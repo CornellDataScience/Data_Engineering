@@ -86,7 +86,7 @@ class StdOutListener(StreamListener):
         producer.send_messages(topic, output_data.encode('utf-8'))
         print(output_data)
         print("Sent!!!")
-        sleep(1)
+        sleep(.5)
         return True
 
     def onError(self, status):
