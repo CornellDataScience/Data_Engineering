@@ -9,10 +9,10 @@ import avro.ipc
 import avro.schema
 from time import sleep
 
-access_token = "936766436772663297-lDZ1AyP3z6NiZ1L0qQLQdo5PQXW6VZR"
-access_token_secret = "NY1x4ZIdTjBDgfMAIgknz1urSPE3AZK2tDPEwyXIl3ovS"
-consumer_key = "7Dzvyp5IKeB0dgj9wdcBEP2Fi"
-consumer_secret = "eTxZwEydglZeQIZguMiYcaQokRzNA04MG1mOY2uwEwMEZhxNd9"
+access_token = 
+access_token_secret = 
+consumer_key = 
+consumer_secret = 
 topic = "data_raw"
 
 
