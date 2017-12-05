@@ -20,6 +20,8 @@ public class PlagueProcess {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         Properties properties = new Properties();
         properties.setProperty("bootstrap.servers", "localhost:9092");
+        properties.setProperty("zookeeper.connect", "localhost:2181");
+        properties.setProperty("group.id", "test");
 
         AvroRowDeserializationSchema schema = new AvroRowDeserializationSchema(avro.Plague_Update.class);
         FlinkKafkaConsumer08<Row> myConsumer = new FlinkKafkaConsumer08<>("raw", schema, properties);
