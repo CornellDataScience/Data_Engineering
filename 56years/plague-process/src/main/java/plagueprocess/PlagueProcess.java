@@ -9,6 +9,7 @@ import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer08;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer010;
 import org.apache.flink.streaming.util.serialization.AvroRowDeserializationSchema;
 import org.apache.flink.streaming.util.serialization.AvroRowSerializationSchema;
+import org.apache.flink.streaming.util.serialization.JsonRowDeserializationSchema;
 import org.apache.flink.types.Row;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class PlagueProcess {
         properties.setProperty("group.id", "test");
 
 
-        FlinkKafkaConsumer08<Row> myConsumer = new FlinkKafkaConsumer08<>("raw", schema, properties);
+        FlinkKafkaConsumer08<Row> myConsumer = new FlinkKafkaConsumer08<>("raw", new JsonRowDeserializationSchema(null), properties);
 
         myConsumer.setStartFromEarliest();
 
