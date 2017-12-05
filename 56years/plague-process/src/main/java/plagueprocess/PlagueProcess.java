@@ -5,7 +5,7 @@ import org.apache.flink.api.java.functions.KeySelector;
 import org.apache.flink.streaming.api.datastream.DataStream;
 import org.apache.flink.streaming.api.datastream.KeyedStream;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
-import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer010;
+import org.apache.flink.streaming.connectors.kafka.FlinkKafkaConsumer08;
 import org.apache.flink.streaming.connectors.kafka.FlinkKafkaProducer010;
 import org.apache.flink.streaming.util.serialization.AvroRowDeserializationSchema;
 import org.apache.flink.streaming.util.serialization.AvroRowSerializationSchema;
@@ -22,7 +22,7 @@ public class PlagueProcess {
         properties.setProperty("bootstrap.servers", "localhost:9092");
 
         AvroRowDeserializationSchema schema = new AvroRowDeserializationSchema(avro.Plague_Update.class);
-        FlinkKafkaConsumer010<Row> myConsumer = new FlinkKafkaConsumer010<Row>("raw", schema, properties);
+        FlinkKafkaConsumer08<Row> myConsumer = new FlinkKafkaConsumer08<>("raw", schema, properties);
 
         myConsumer.setStartFromEarliest();
         DataStream<Row> stream = env.addSource(myConsumer);
