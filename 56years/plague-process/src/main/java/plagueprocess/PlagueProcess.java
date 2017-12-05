@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class PlagueProcess {
-    static AvroRowDeserializationSchema schema = new AvroRowDeserializationSchema(avro.Plague_Update.class);
 
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
@@ -26,7 +25,7 @@ public class PlagueProcess {
         properties.setProperty("group.id", "test");
 
 
-        FlinkKafkaConsumer08<Row> myConsumer = new FlinkKafkaConsumer08<>("raw", new JsonRowDeserializationSchema(null), properties);
+        FlinkKafkaConsumer08<Row> myConsumer = new FlinkKafkaConsumer08<>("raw", new AvroRowDeserializationSchema(avro.Plague_Update.class), properties);
 
         myConsumer.setStartFromEarliest();
 
