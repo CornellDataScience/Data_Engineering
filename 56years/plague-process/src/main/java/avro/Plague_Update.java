@@ -13,8 +13,8 @@ import org.apache.avro.message.SchemaStore;
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
 public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
-  private static final long serialVersionUID = -2939288045312086523L;
-  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Plague_Update\",\"namespace\":\"avro\",\"fields\":[{\"name\":\"timestamp\",\"type\":\"long\"},{\"name\":\"location\",\"type\":\"string\"},{\"name\":\"newDeaths\",\"type\":\"int\"},{\"name\":\"newCured\",\"type\":\"int\"},{\"name\":\"newInfections\",\"type\":\"int\"}]}");
+  private static final long serialVersionUID = -9175988512445560366L;
+  public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Plague_Update\",\"namespace\":\"avro\",\"fields\":[{\"name\":\"location\",\"type\":\"string\"},{\"name\":\"newDeaths\",\"type\":\"int\"},{\"name\":\"newCured\",\"type\":\"int\"},{\"name\":\"newInfections\",\"type\":\"int\"},{\"name\":\"severity\",\"type\":\"float\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
 
   private static SpecificData MODEL$ = new SpecificData();
@@ -51,11 +51,11 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
     return DECODER.decode(b);
   }
 
-  @Deprecated public long timestamp;
   @Deprecated public java.lang.CharSequence location;
   @Deprecated public int newDeaths;
   @Deprecated public int newCured;
   @Deprecated public int newInfections;
+  @Deprecated public float severity;
 
   /**
    * Default constructor.  Note that this does not initialize fields
@@ -66,29 +66,29 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
 
   /**
    * All-args constructor.
-   * @param timestamp The new value for timestamp
    * @param location The new value for location
    * @param newDeaths The new value for newDeaths
    * @param newCured The new value for newCured
    * @param newInfections The new value for newInfections
+   * @param severity The new value for severity
    */
-  public Plague_Update(java.lang.Long timestamp, java.lang.CharSequence location, java.lang.Integer newDeaths, java.lang.Integer newCured, java.lang.Integer newInfections) {
-    this.timestamp = timestamp;
+  public Plague_Update(java.lang.CharSequence location, java.lang.Integer newDeaths, java.lang.Integer newCured, java.lang.Integer newInfections, java.lang.Float severity) {
     this.location = location;
     this.newDeaths = newDeaths;
     this.newCured = newCured;
     this.newInfections = newInfections;
+    this.severity = severity;
   }
 
   public org.apache.avro.Schema getSchema() { return SCHEMA$; }
   // Used by DatumWriter.  Applications should not call.
   public java.lang.Object get(int field$) {
     switch (field$) {
-    case 0: return timestamp;
-    case 1: return location;
-    case 2: return newDeaths;
-    case 3: return newCured;
-    case 4: return newInfections;
+    case 0: return location;
+    case 1: return newDeaths;
+    case 2: return newCured;
+    case 3: return newInfections;
+    case 4: return severity;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
   }
@@ -97,29 +97,13 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
   @SuppressWarnings(value="unchecked")
   public void put(int field$, java.lang.Object value$) {
     switch (field$) {
-    case 0: timestamp = (java.lang.Long)value$; break;
-    case 1: location = (java.lang.CharSequence)value$; break;
-    case 2: newDeaths = (java.lang.Integer)value$; break;
-    case 3: newCured = (java.lang.Integer)value$; break;
-    case 4: newInfections = (java.lang.Integer)value$; break;
+    case 0: location = (java.lang.CharSequence)value$; break;
+    case 1: newDeaths = (java.lang.Integer)value$; break;
+    case 2: newCured = (java.lang.Integer)value$; break;
+    case 3: newInfections = (java.lang.Integer)value$; break;
+    case 4: severity = (java.lang.Float)value$; break;
     default: throw new org.apache.avro.AvroRuntimeException("Bad index");
     }
-  }
-
-  /**
-   * Gets the value of the 'timestamp' field.
-   * @return The value of the 'timestamp' field.
-   */
-  public java.lang.Long getTimestamp() {
-    return timestamp;
-  }
-
-  /**
-   * Sets the value of the 'timestamp' field.
-   * @param value the value to set.
-   */
-  public void setTimestamp(java.lang.Long value) {
-    this.timestamp = value;
   }
 
   /**
@@ -187,6 +171,22 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
   }
 
   /**
+   * Gets the value of the 'severity' field.
+   * @return The value of the 'severity' field.
+   */
+  public java.lang.Float getSeverity() {
+    return severity;
+  }
+
+  /**
+   * Sets the value of the 'severity' field.
+   * @param value the value to set.
+   */
+  public void setSeverity(java.lang.Float value) {
+    this.severity = value;
+  }
+
+  /**
    * Creates a new Plague_Update RecordBuilder.
    * @return A new Plague_Update RecordBuilder
    */
@@ -218,11 +218,11 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
   public static class Builder extends org.apache.avro.specific.SpecificRecordBuilderBase<Plague_Update>
     implements org.apache.avro.data.RecordBuilder<Plague_Update> {
 
-    private long timestamp;
     private java.lang.CharSequence location;
     private int newDeaths;
     private int newCured;
     private int newInfections;
+    private float severity;
 
     /** Creates a new Builder */
     private Builder() {
@@ -235,24 +235,24 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
      */
     private Builder(avro.Plague_Update.Builder other) {
       super(other);
-      if (isValidValue(fields()[0], other.timestamp)) {
-        this.timestamp = data().deepCopy(fields()[0].schema(), other.timestamp);
+      if (isValidValue(fields()[0], other.location)) {
+        this.location = data().deepCopy(fields()[0].schema(), other.location);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.location)) {
-        this.location = data().deepCopy(fields()[1].schema(), other.location);
+      if (isValidValue(fields()[1], other.newDeaths)) {
+        this.newDeaths = data().deepCopy(fields()[1].schema(), other.newDeaths);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.newDeaths)) {
-        this.newDeaths = data().deepCopy(fields()[2].schema(), other.newDeaths);
+      if (isValidValue(fields()[2], other.newCured)) {
+        this.newCured = data().deepCopy(fields()[2].schema(), other.newCured);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.newCured)) {
-        this.newCured = data().deepCopy(fields()[3].schema(), other.newCured);
+      if (isValidValue(fields()[3], other.newInfections)) {
+        this.newInfections = data().deepCopy(fields()[3].schema(), other.newInfections);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.newInfections)) {
-        this.newInfections = data().deepCopy(fields()[4].schema(), other.newInfections);
+      if (isValidValue(fields()[4], other.severity)) {
+        this.severity = data().deepCopy(fields()[4].schema(), other.severity);
         fieldSetFlags()[4] = true;
       }
     }
@@ -263,64 +263,26 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
      */
     private Builder(avro.Plague_Update other) {
             super(SCHEMA$);
-      if (isValidValue(fields()[0], other.timestamp)) {
-        this.timestamp = data().deepCopy(fields()[0].schema(), other.timestamp);
+      if (isValidValue(fields()[0], other.location)) {
+        this.location = data().deepCopy(fields()[0].schema(), other.location);
         fieldSetFlags()[0] = true;
       }
-      if (isValidValue(fields()[1], other.location)) {
-        this.location = data().deepCopy(fields()[1].schema(), other.location);
+      if (isValidValue(fields()[1], other.newDeaths)) {
+        this.newDeaths = data().deepCopy(fields()[1].schema(), other.newDeaths);
         fieldSetFlags()[1] = true;
       }
-      if (isValidValue(fields()[2], other.newDeaths)) {
-        this.newDeaths = data().deepCopy(fields()[2].schema(), other.newDeaths);
+      if (isValidValue(fields()[2], other.newCured)) {
+        this.newCured = data().deepCopy(fields()[2].schema(), other.newCured);
         fieldSetFlags()[2] = true;
       }
-      if (isValidValue(fields()[3], other.newCured)) {
-        this.newCured = data().deepCopy(fields()[3].schema(), other.newCured);
+      if (isValidValue(fields()[3], other.newInfections)) {
+        this.newInfections = data().deepCopy(fields()[3].schema(), other.newInfections);
         fieldSetFlags()[3] = true;
       }
-      if (isValidValue(fields()[4], other.newInfections)) {
-        this.newInfections = data().deepCopy(fields()[4].schema(), other.newInfections);
+      if (isValidValue(fields()[4], other.severity)) {
+        this.severity = data().deepCopy(fields()[4].schema(), other.severity);
         fieldSetFlags()[4] = true;
       }
-    }
-
-    /**
-      * Gets the value of the 'timestamp' field.
-      * @return The value.
-      */
-    public java.lang.Long getTimestamp() {
-      return timestamp;
-    }
-
-    /**
-      * Sets the value of the 'timestamp' field.
-      * @param value The value of 'timestamp'.
-      * @return This builder.
-      */
-    public avro.Plague_Update.Builder setTimestamp(long value) {
-      validate(fields()[0], value);
-      this.timestamp = value;
-      fieldSetFlags()[0] = true;
-      return this;
-    }
-
-    /**
-      * Checks whether the 'timestamp' field has been set.
-      * @return True if the 'timestamp' field has been set, false otherwise.
-      */
-    public boolean hasTimestamp() {
-      return fieldSetFlags()[0];
-    }
-
-
-    /**
-      * Clears the value of the 'timestamp' field.
-      * @return This builder.
-      */
-    public avro.Plague_Update.Builder clearTimestamp() {
-      fieldSetFlags()[0] = false;
-      return this;
     }
 
     /**
@@ -337,9 +299,9 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public avro.Plague_Update.Builder setLocation(java.lang.CharSequence value) {
-      validate(fields()[1], value);
+      validate(fields()[0], value);
       this.location = value;
-      fieldSetFlags()[1] = true;
+      fieldSetFlags()[0] = true;
       return this;
     }
 
@@ -348,7 +310,7 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return True if the 'location' field has been set, false otherwise.
       */
     public boolean hasLocation() {
-      return fieldSetFlags()[1];
+      return fieldSetFlags()[0];
     }
 
 
@@ -358,7 +320,7 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       */
     public avro.Plague_Update.Builder clearLocation() {
       location = null;
-      fieldSetFlags()[1] = false;
+      fieldSetFlags()[0] = false;
       return this;
     }
 
@@ -376,9 +338,9 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public avro.Plague_Update.Builder setNewDeaths(int value) {
-      validate(fields()[2], value);
+      validate(fields()[1], value);
       this.newDeaths = value;
-      fieldSetFlags()[2] = true;
+      fieldSetFlags()[1] = true;
       return this;
     }
 
@@ -387,7 +349,7 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return True if the 'newDeaths' field has been set, false otherwise.
       */
     public boolean hasNewDeaths() {
-      return fieldSetFlags()[2];
+      return fieldSetFlags()[1];
     }
 
 
@@ -396,7 +358,7 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public avro.Plague_Update.Builder clearNewDeaths() {
-      fieldSetFlags()[2] = false;
+      fieldSetFlags()[1] = false;
       return this;
     }
 
@@ -414,9 +376,9 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public avro.Plague_Update.Builder setNewCured(int value) {
-      validate(fields()[3], value);
+      validate(fields()[2], value);
       this.newCured = value;
-      fieldSetFlags()[3] = true;
+      fieldSetFlags()[2] = true;
       return this;
     }
 
@@ -425,7 +387,7 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return True if the 'newCured' field has been set, false otherwise.
       */
     public boolean hasNewCured() {
-      return fieldSetFlags()[3];
+      return fieldSetFlags()[2];
     }
 
 
@@ -434,7 +396,7 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public avro.Plague_Update.Builder clearNewCured() {
-      fieldSetFlags()[3] = false;
+      fieldSetFlags()[2] = false;
       return this;
     }
 
@@ -452,9 +414,9 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public avro.Plague_Update.Builder setNewInfections(int value) {
-      validate(fields()[4], value);
+      validate(fields()[3], value);
       this.newInfections = value;
-      fieldSetFlags()[4] = true;
+      fieldSetFlags()[3] = true;
       return this;
     }
 
@@ -463,7 +425,7 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return True if the 'newInfections' field has been set, false otherwise.
       */
     public boolean hasNewInfections() {
-      return fieldSetFlags()[4];
+      return fieldSetFlags()[3];
     }
 
 
@@ -472,6 +434,44 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
       * @return This builder.
       */
     public avro.Plague_Update.Builder clearNewInfections() {
+      fieldSetFlags()[3] = false;
+      return this;
+    }
+
+    /**
+      * Gets the value of the 'severity' field.
+      * @return The value.
+      */
+    public java.lang.Float getSeverity() {
+      return severity;
+    }
+
+    /**
+      * Sets the value of the 'severity' field.
+      * @param value The value of 'severity'.
+      * @return This builder.
+      */
+    public avro.Plague_Update.Builder setSeverity(float value) {
+      validate(fields()[4], value);
+      this.severity = value;
+      fieldSetFlags()[4] = true;
+      return this;
+    }
+
+    /**
+      * Checks whether the 'severity' field has been set.
+      * @return True if the 'severity' field has been set, false otherwise.
+      */
+    public boolean hasSeverity() {
+      return fieldSetFlags()[4];
+    }
+
+
+    /**
+      * Clears the value of the 'severity' field.
+      * @return This builder.
+      */
+    public avro.Plague_Update.Builder clearSeverity() {
       fieldSetFlags()[4] = false;
       return this;
     }
@@ -481,11 +481,11 @@ public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase i
     public Plague_Update build() {
       try {
         Plague_Update record = new Plague_Update();
-        record.timestamp = fieldSetFlags()[0] ? this.timestamp : (java.lang.Long) defaultValue(fields()[0]);
-        record.location = fieldSetFlags()[1] ? this.location : (java.lang.CharSequence) defaultValue(fields()[1]);
-        record.newDeaths = fieldSetFlags()[2] ? this.newDeaths : (java.lang.Integer) defaultValue(fields()[2]);
-        record.newCured = fieldSetFlags()[3] ? this.newCured : (java.lang.Integer) defaultValue(fields()[3]);
-        record.newInfections = fieldSetFlags()[4] ? this.newInfections : (java.lang.Integer) defaultValue(fields()[4]);
+        record.location = fieldSetFlags()[0] ? this.location : (java.lang.CharSequence) defaultValue(fields()[0]);
+        record.newDeaths = fieldSetFlags()[1] ? this.newDeaths : (java.lang.Integer) defaultValue(fields()[1]);
+        record.newCured = fieldSetFlags()[2] ? this.newCured : (java.lang.Integer) defaultValue(fields()[2]);
+        record.newInfections = fieldSetFlags()[3] ? this.newInfections : (java.lang.Integer) defaultValue(fields()[3]);
+        record.severity = fieldSetFlags()[4] ? this.severity : (java.lang.Float) defaultValue(fields()[4]);
         return record;
       } catch (java.lang.Exception e) {
         throw new org.apache.avro.AvroRuntimeException(e);
