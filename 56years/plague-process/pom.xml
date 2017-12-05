@@ -115,6 +115,11 @@ under the License.
             <artifactId>avro-ipc</artifactId>
             <version>1.8.2</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro-tools</artifactId>
+            <version>1.8.2</version>
+        </dependency>
 	</dependencies>
 
 	<profiles>
