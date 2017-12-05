@@ -10,9 +10,11 @@ import org.apache.avro.message.BinaryMessageEncoder;
 import org.apache.avro.message.BinaryMessageDecoder;
 import org.apache.avro.message.SchemaStore;
 
+import java.io.Serializable;
+
 @SuppressWarnings("all")
 @org.apache.avro.specific.AvroGenerated
-public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord {
+public class Plague_Update extends org.apache.avro.specific.SpecificRecordBase implements org.apache.avro.specific.SpecificRecord, Serializable {
   private static final long serialVersionUID = -9175988512445560366L;
   public static final org.apache.avro.Schema SCHEMA$ = new org.apache.avro.Schema.Parser().parse("{\"type\":\"record\",\"name\":\"Plague_Update\",\"namespace\":\"avro\",\"fields\":[{\"name\":\"location\",\"type\":\"string\"},{\"name\":\"newDeaths\",\"type\":\"int\"},{\"name\":\"newCured\",\"type\":\"int\"},{\"name\":\"newInfections\",\"type\":\"int\"},{\"name\":\"severity\",\"type\":\"float\"}]}");
   public static org.apache.avro.Schema getClassSchema() { return SCHEMA$; }
